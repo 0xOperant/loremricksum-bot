@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import os, json, io, tweepy, time, urllib2
+import os, json, io, time, urllib2
+import tweepy
 
 CONSUMER_KEY = os.environ['CONSUMER_KEY']
 CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
