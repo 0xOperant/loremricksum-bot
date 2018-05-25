@@ -23,5 +23,6 @@ while True:
         runBot()
     except tweepy.TweepError as e:
         print((e.reason))
+        runBot()
     time.sleep(3600)
 
