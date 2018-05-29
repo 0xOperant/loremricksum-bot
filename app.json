@@ -1,0 +1,29 @@
+{
+  "name": "loremricksum-bot",
+  "scripts": {
+  },
+  "env": {
+    "ACCESS_SECRET": {
+      "required": true
+    },
+    "ACCESS_TOKEN": {
+      "required": true
+    },
+    "CONSUMER_KEY": {
+      "required": true
+    },
+    "CONSUMER_SECRET": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
