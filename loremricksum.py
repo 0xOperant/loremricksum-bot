@@ -12,17 +12,47 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
 url = 'http://loremricksum.com/api/?paragraphs=1&quotes=1'
 
-def runBot():
+def getQuote():
     quote = urllib.request.urlopen(url).read().decode('UTF-8')
     text = json.loads(quote)['data']
     tweet = json.dumps(text).strip("[]")
-    api.update_status(tweet)
+    return tweet
+
+def tweetQuote():
+    msg = getQuote()
+    api.update_status(msg)
+
+def tweetReply(username, status_id):
+    reply = getQuote()
+    reply_status = "@%s %s" % (username, reply)
+    api.update_status(status = reply_status, in_reply_to_status_id = status_id)
+
+def favorite(status_id):
+    api.create_favorite(status_id)
+
+class BotStreamer(tweepy.StreamListener):
+
+    def on_status(self, status):
+        try:
+            username = status.user.screen_name
+            status_id = status.id
+            favorite(status_id)
+            tweetReply(username, status_id)
+        except tweepy.TweepError as e:
+            print((e.reason))
+            tweetReply(username, status_id)
+
+myStreamListener = BotStreamer()
+
+stream = tweepy.Stream(auth, myStreamListener)
+stream.filter(track=['@loremricksum'], async=True)
 
 while True:
-    try:    
-        runBot()
+    try:
+        tweetQuote()
     except tweepy.TweepError as e:
         print((e.reason))
-        runBot()
+        tweetQuote()
     time.sleep(3600)
+
 
