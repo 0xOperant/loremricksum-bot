@@ -36,6 +36,7 @@ def sendDM(username):
     print("DM sent to", username)
 
 class BotStreamer(tweepy.StreamListener):
+    def __init__( self ):
 
 #    def on_status(self, status):
 #        try:
