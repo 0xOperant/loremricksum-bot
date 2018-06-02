@@ -47,17 +47,20 @@ class BotStreamer(tweepy.StreamListener):
             print((e.reason))
             tweetReply(username, status_id)
 
-    def on_data(self, raw_data):
-        if 'direct_message' in data:
-            status = Status.parse(self.api, data)
-            if self.on_direct_message(status) is False:
-                return False
-            else:
-                username = status.user.screen_name
-                sendDM(username)
-                print("DM detected from", username)
-        else:
-            pass
+    def on_direct_message(self, status):
+        print("Direct message received.")
+
+#    def on_data(self, raw_data):
+#        if 'direct_message' in data:
+#            status = Status.parse(self.api, data)
+#            if self.on_direct_message(status) is False:
+#                return False
+#            else:
+#                username = status.user.screen_name
+#                sendDM(username)
+#                print("DM detected from", username)
+#        else:
+#            pass
 
 myStreamListener = BotStreamer()
 
