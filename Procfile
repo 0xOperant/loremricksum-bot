@@ -1,1 +1,1 @@
-worker: python loremricksum.py
+worker: python333 loremricksum.py
