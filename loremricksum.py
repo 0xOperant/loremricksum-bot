@@ -36,7 +36,7 @@ def sendDM(username):
     print("DM sent to", username)
 
 class BotStreamer(tweepy.StreamListener):
-    def __init__( self ):
+    def __init__(self):
 
 #    def on_status(self, status):
 #        try:
@@ -48,8 +48,8 @@ class BotStreamer(tweepy.StreamListener):
 #            print((e.reason))
 #            tweetReply(username, status_id)
 
-    def on_direct_message(self, status):
-        print("is this thing on????")
+        def on_direct_message(self, status):
+            print(status)
 
 #    def on_data(self, raw_data):
 #        if 'direct_message' in data:
