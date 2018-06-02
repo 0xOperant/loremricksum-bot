@@ -49,6 +49,7 @@ class BotStreamer(tweepy.StreamListener):
 
     def on_data(self, status):
         status = str(status)
+        print((status))
         if 'direct_message' in status.keys():
             username = status.user.screen_name
             sendDM(username)
