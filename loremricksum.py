@@ -48,7 +48,7 @@ class BotStreamer(tweepy.StreamListener):
             tweetReply(username, status_id)
 
     def on_direct_message(self, status):
-        print("Direct message received.")
+        print("Direct message received:", status)
 
 #    def on_data(self, raw_data):
 #        if 'direct_message' in data:
@@ -65,12 +65,12 @@ class BotStreamer(tweepy.StreamListener):
 myStreamListener = BotStreamer()
 
 stream = tweepy.Stream(auth, myStreamListener)
-stream.filter(track=['@loremricksumDev'], async=True)
+stream.filter(track=['@loremricksumDev'])
 
-while True:
-    try:
-        tweetQuote()
-    except tweepy.TweepError as e:
-        print((e.reason))
-        tweetQuote()
-    time.sleep(3600)
+#while True:
+#    try:
+#        tweetQuote()
+#    except tweepy.TweepError as e:
+#        print((e.reason))
+#        tweetQuote()
+#    time.sleep(3600)
