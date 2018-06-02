@@ -37,15 +37,15 @@ def sendDM(username):
 
 class BotStreamer(tweepy.StreamListener):
 
-    def on_status(self, status):
-        try:
-            username = status.user.screen_name
-            status_id = status.id
-            favorite(status_id)
-            tweetReply(username, status_id)
-        except tweepy.TweepError as e:
-            print((e.reason))
-            tweetReply(username, status_id)
+#    def on_status(self, status):
+#        try:
+#            username = status.user.screen_name
+#            status_id = status.id
+#            favorite(status_id)
+#            tweetReply(username, status_id)
+#        except tweepy.TweepError as e:
+#            print((e.reason))
+#            tweetReply(username, status_id)
 
     def on_direct_message(self, status):
         print("Direct message received:", status)
