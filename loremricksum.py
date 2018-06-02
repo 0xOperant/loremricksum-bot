@@ -48,7 +48,9 @@ class BotStreamer(tweepy.StreamListener):
             tweetReply(username, status_id)
 
     def on_direct_message(self, status):
+        username = status.user.screen_name
         sendDM(username)
+        print((dm from username))
 
 myStreamListener = BotStreamer()
 
