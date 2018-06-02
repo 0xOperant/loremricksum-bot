@@ -48,7 +48,7 @@ class BotStreamer(tweepy.StreamListener):
 #            tweetReply(username, status_id)
 
     def on_direct_message(self, status):
-        print("Direct message received:", status)
+        print status.text
 
 #    def on_data(self, raw_data):
 #        if 'direct_message' in data:
