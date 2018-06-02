@@ -31,8 +31,9 @@ def favorite(status_id):
     api.create_favorite(status_id)
 
 def sendDM(username):
-    msg = getQuote()
-    api.send_direct_message(username, msg)
+    dm = getQuote()
+    api.send_direct_message(username, dm)
+    print((dm))
 
 class BotStreamer(tweepy.StreamListener):
 
