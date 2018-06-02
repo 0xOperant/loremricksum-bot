@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 import os, json, io, time, urllib.request, urllib.error, urllib.parse
 import tweepy
+from creds import *
 
-CONSUMER_KEY = os.environ['CONSUMER_KEY']
-CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
-ACCESS_TOKEN = os.environ['ACCESS_TOKEN']
-ACCESS_SECRET = os.environ['ACCESS_SECRET']
+CONSUMER_KEY = ['CONSUMER_KEY']
+CONSUMER_SECRET = ['CONSUMER_SECRET']
+ACCESS_TOKEN = ['ACCESS_TOKEN']
+ACCESS_SECRET = ['ACCESS_SECRET']
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
@@ -30,43 +31,22 @@ def tweetReply(username, status_id):
 def favorite(status_id):
     api.create_favorite(status_id)
 
-def sendDM(username):
-    dm = getQuote()
-    api.send_direct_message(screen_name = username, text = dm)
-    print("DM sent to", username)
-
 class BotStreamer(tweepy.StreamListener):
-    def __init__(self):
 
-#    def on_status(self, status):
-#        try:
-#            username = status.user.screen_name
-#            status_id = status.id
-#            favorite(status_id)
-#            tweetReply(username, status_id)
-#        except tweepy.TweepError as e:
-#            print((e.reason))
-#            tweetReply(username, status_id)
-
-        def on_direct_message(self, status):
-            print(status)
-
-#    def on_data(self, raw_data):
-#        if 'direct_message' in data:
-#            status = Status.parse(self.api, data)
-#            if self.on_direct_message(status) is False:
-#                return False
-#            else:
-#                username = status.user.screen_name
-#                sendDM(username)
-#                print("DM detected from", username)
-#        else:
-#            pass
+    def on_status(self, status):
+        try:
+            username = status.user.screen_name
+            status_id = status.id
+            favorite(status_id)
+            tweetReply(username, status_id)
+        except tweepy.TweepError as e:
+            print((e.reason))
+            tweetReply(username, status_id)
 
 myStreamListener = BotStreamer()
 
 stream = tweepy.Stream(auth, myStreamListener)
-stream.filter(track=['@loremricksumDev'])
+stream.filter(track=['@loremricksumDev'], async=True)
 
 #while True:
 #    try:

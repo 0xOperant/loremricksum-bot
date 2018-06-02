@@ -1,3 +1,5 @@
 ricksumdev/
 .env
 *.pyc
+creds.py
+__pycache__
