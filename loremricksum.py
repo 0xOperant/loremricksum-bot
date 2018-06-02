@@ -30,6 +30,10 @@ def tweetReply(username, status_id):
 def favorite(status_id):
     api.create_favorite(status_id)
 
+def sendDM(username):
+    msg = getQuote()
+    api.send_direct_message(username, msg)
+
 class BotStreamer(tweepy.StreamListener):
 
     def on_status(self, status):
@@ -42,10 +46,13 @@ class BotStreamer(tweepy.StreamListener):
             print((e.reason))
             tweetReply(username, status_id)
 
+    def on_direct_message(self, status):
+        sendDM(username)
+
 myStreamListener = BotStreamer()
 
 stream = tweepy.Stream(auth, myStreamListener)
-stream.filter(track=['@loremricksum'], async=True)
+stream.filter(track=['@loremricksumDev'], async=True)
 
 while True:
     try:
@@ -54,5 +61,3 @@ while True:
         print((e.reason))
         tweetQuote()
     time.sleep(3600)
-
-
