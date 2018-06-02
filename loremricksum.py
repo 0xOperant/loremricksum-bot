@@ -33,7 +33,7 @@ def favorite(status_id):
 def sendDM(username):
     dm = getQuote()
     api.send_direct_message(username, dm)
-    print((dm))
+    print(("DM sent to" + username))
 
 class BotStreamer(tweepy.StreamListener):
 
@@ -47,10 +47,13 @@ class BotStreamer(tweepy.StreamListener):
             print((e.reason))
             tweetReply(username, status_id)
 
-    def on_direct_message(self, status):
-        username = status.user.screen_name
-        sendDM(username)
-        print((username))
+    def on_data(self, status):
+        if 'direct_message' in status.keys():
+            username = status.user.screen_name
+            sendDM(username)
+            print(("DM detected"))
+        else:
+            pass
 
 myStreamListener = BotStreamer()
 
