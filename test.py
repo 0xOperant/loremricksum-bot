@@ -32,8 +32,8 @@ def favorite(status_id):
 
 class BotStreamer(tweepy.StreamListener):
 
-    def on_direct_message(self, data):
-        print(data)
+    def on_direct_message(self, status):
+        print(status)
         return(True)
 
 #    def on_status(self, status):
