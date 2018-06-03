@@ -42,6 +42,9 @@ class BotStreamer(tweepy.StreamListener):
             print("no dm found")
         return True
 
+    def on_direct_message(self, data):
+        print(data)
+
 
 #    def on_status(self, status):
 #        try:
