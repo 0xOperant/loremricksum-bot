@@ -37,7 +37,7 @@ class BotStreamer(tweepy.StreamListener):
         dmsg = json.loads(status)
         print(dmsg)
         if 'direct_message' in dmsg:
-        print (dmsg['direct_message']['text'])
+            print (dmsg['direct_message']['text'])
 
 
 #    def on_status(self, status):
