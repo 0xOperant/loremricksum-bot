@@ -34,10 +34,8 @@ class BotStreamer(tweepy.StreamListener):
 
     def on_data(self, data):
         status = str(data)
-        print(status)
-        json_acceptable_string = status.replace('\\','')
-        status = json.loads(json_acceptable_string)
-        print(status)
+        dmsg = json.loads(status)
+        print(dmsg)
         if 'direct_message' in status.keys():
             print("dm received")
         else:
