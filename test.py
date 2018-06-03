@@ -35,13 +35,13 @@ class BotStreamer(tweepy.StreamListener):
     def on_data(self, status):
         print("init")
         status = str(status)
-        print(status)
+        print("status")
         try:
             json_acceptable_string = status.replace('\\','')
             #string to dict
             status=json.loads(json_acceptable_string)
             if 'direct_message' in status.keys():
-                print (direct_message)
+                print ("dm received")
                 #print (status[u'direct_message'][u'sender_screen_name'] +' sent: '+ status[u'direct_message'][u'text'])
                 #message=str(status[u'direct_message'][u'text'])
                 #api.send_direct_message(screen_name=str(status[u'direct_message'][u'sender_screen_name']),text='Out of office now - will respond to you asap')
