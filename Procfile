@@ -1,1 +1,1 @@
-worker: python3 loremricksum.py
+worker: python3 test.py

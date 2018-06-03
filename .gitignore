@@ -1,4 +1,4 @@
-ricksumdev/
+venv/
 .env
 *.pyc
 creds.py
