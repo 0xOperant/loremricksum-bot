@@ -36,14 +36,8 @@ class BotStreamer(tweepy.StreamListener):
         status = str(data)
         dmsg = json.loads(status)
         print(dmsg)
-        if 'message_create' in dmsg:
-            print("dm received")
-        else:
-            print("no dm found")
-        return True
-
-    def on_direct_message(self, data):
-        print(data)
+        if 'direct_message' in dmsg:
+        print (dmsg['direct_message']['text'])
 
 
 #    def on_status(self, status):
