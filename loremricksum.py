@@ -20,11 +20,12 @@ def getQuote():
 
 def tweetQuote():
     msg = getQuote()
-    api.update_status(msg)
+    tweet_status = "%s #RickAndMorty" % (msg)
+    api.update_status(tweet_status)
 
 def tweetReply(username, status_id):
     reply = getQuote()
-    reply_status = "@%s %s" % (username, reply)
+    reply_status = "@%s %s #RickAndMorty" % (username, reply)
     api.update_status(status = reply_status, in_reply_to_status_id = status_id)
 
 def favorite(status_id):
