@@ -43,7 +43,7 @@ class BotStreamer(tweepy.StreamListener):
             except tweepy.TweepError as e:
                 print((e.reason))
                 tweetReply(username, status_id)
-         else:
+         finally:
             favorite(status_id)
                 
     def on_limit(self, status):
