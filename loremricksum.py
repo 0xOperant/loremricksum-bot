@@ -43,9 +43,9 @@ class BotStreamer(tweepy.StreamListener):
             print((e.reason))
             tweetReply(username, status_id)
             
-    def on_data(self, data):
-        if  not 'in_reply_to_status' in data:
-            favorite(status.id)
+#    def on_data(self, data):
+#        if  not 'in_reply_to_status' in data:
+#            favorite(status.id)
                 
     def on_limit(self, status):
         print("Rate Limit Exceeded, Sleep for 15 Mins")
