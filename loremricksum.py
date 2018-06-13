@@ -63,4 +63,3 @@ while True:
         print((e.reason))
         tweetQuote()
     time.sleep(3600)
-    return True
