@@ -36,12 +36,12 @@ class BotStreamer(tweepy.StreamListener):
     def on_status(self, status):
         username = status.user.screen_name
         status_id = status.id
-            try:
-                favorite(status_id)
-                tweetReply(username, status_id)
-            except tweepy.TweepError as e:
-                print((e.reason))
-                tweetReply(username, status_id)
+        try:
+            favorite(status_id)
+            tweetReply(username, status_id)
+        except tweepy.TweepError as e:
+            print((e.reason))
+            tweetReply(username, status_id)
             
     def on_data(self, data):
         if  not 'in_reply_to_status' in data:
