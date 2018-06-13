@@ -39,9 +39,9 @@ class BotStreamer(tweepy.StreamListener):
         if 'in_reply_to_status' in data:
             favorite(status_id)
             tweetReply(username, status_id)
-            except tweepy.TweepError as e:
-                print((e.reason))
-                tweetReply(username, status_id)
+        except tweepy.TweepError as e:
+            print((e.reason))
+            tweetReply(username, status_id)
         else:
             favorite(status_id)
                 
