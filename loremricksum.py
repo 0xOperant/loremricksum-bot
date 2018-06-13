@@ -32,21 +32,29 @@ def favorite(status_id):
     api.create_favorite(status_id)
 
 class BotStreamer(tweepy.StreamListener):
-
+    
     def on_status(self, status):
-        try:
-            username = status.user.screen_name
-            status_id = status.id
+        username = status.user.screen_name
+        status_id = status.id
+        if 'in_reply_to_status' in data:
+            try:
+                favorite(status_id)
+                tweetReply(username, status_id)
+            except tweepy.TweepError as e:
+                print((e.reason))
+                tweetReply(username, status_id)
+         else:
             favorite(status_id)
-            tweetReply(username, status_id)
-        except tweepy.TweepError as e:
-            print((e.reason))
-            tweetReply(username, status_id)
-
+                
+    def on_limit(self, status):
+        print("Rate Limit Exceeded, Sleep for 15 Mins")
+        time.sleep(900)
+        return True
+            
 myStreamListener = BotStreamer()
 
 stream = tweepy.Stream(auth, myStreamListener)
-stream.filter(track=['@loremricksum'], async=True)
+stream.filter(track=['@loremricksum', '#RickAndMorty'], async=True)
 
 while True:
     try:
@@ -55,5 +63,3 @@ while True:
         print((e.reason))
         tweetQuote()
     time.sleep(3600)
-
-
