@@ -43,8 +43,10 @@ class BotStreamer(tweepy.StreamListener):
             except tweepy.TweepError as e:
                 print((e.reason))
                 tweetReply(username, status_id)
-         finally:
+            return True
+        else:
             favorite(status_id)
+            return True
                 
     def on_limit(self, status):
         print("Rate Limit Exceeded, Sleep for 15 Mins")
@@ -63,3 +65,4 @@ while True:
         print((e.reason))
         tweetQuote()
     time.sleep(3600)
+    return True
