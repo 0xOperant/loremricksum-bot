@@ -55,7 +55,7 @@ class BotStreamer(tweepy.StreamListener):
 myStreamListener = BotStreamer()
 
 stream = tweepy.Stream(auth, myStreamListener)
-stream.filter(track=['@loremricksum', '#RickAndMorty'], async=True)
+stream.filter(track=['@loremricksum'], async=True)
 
 while True:
     try:
